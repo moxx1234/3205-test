@@ -1,36 +1,28 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+### Тестовое задание.
 
-## Getting Started
+#### ТЗ: 
+есть следующий JSON файл: (файл находится по адресу src/data.json)
 
-First, run the development server:
+Напишите приложение с одной страницей, на котором находится форма с двумя полями email (обязательное) и number (опциональное) и кнопка submit при нажатии на submit запрос уходит на бек где нужно в JSON найти подходящих под поисковый запрос пользователей отобразить найденные данные на клиенте под формой
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+##### **Условия:**
+- нужно на беке добавить задержку обработки запроса в 5 секунд (имитация долгой обработки ответа). При повторном запросе с фронта, отменять прошлый запрос.
+- обязательная валидация полей email и number. Можно сделать либо на фронте либо на беке, будьте готовы объяснить выбранный подход
+- на фронте на поле number нужно добавить маску, чтобы номер отображался с дефисами каждые два знака. например 22-11-22, 83-03-47
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+##### **Тех. требования:**
+- фронт react или vue (типизация на выбор)
+- бек nodejs (типизация обязательна)
+- библиотеки на ваше усмотрение
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+##### **Описание:**
+Для выполнения задачи был выбран fullstack фреймворк next.js
+Для работы с формой на стороне клиента используется библиотека formik. Валидация данных происходит на клиенте.
+Передача данных на бэкенд происходит за счет объекта FormData, переданных в url, через http GET запрос
+Серверный функционал (./src/app/api/search/route.ts) читает data.json файл, ищет совпадения с полей email и number, возвращает результат в формате json массива из объектов на клиент
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
-
-## Learn More
-
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+>#### Инструкция для запуска:
+>1. Клонируйте репозиторий
+>2. В терминале корневой директории проекта, введите команду "npm run dev"
+>	1. Запустится локальный сервер на порту 3000
+>	2. Должна открыться страница браузера с адресом сервера
